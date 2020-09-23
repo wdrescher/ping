@@ -23,7 +23,7 @@ def get():
         r = requests.get(pong_endpoint, auth=httpDigest('vcu', 'rams') )
         end = t.perf_counter()
         return jsonify({
-                "total-time": r.elapsed.total_seconds()
+                "total-time": round(r.elapsed.total_seconds(), 3)
         })
 
 if __name__ == "__main__":
