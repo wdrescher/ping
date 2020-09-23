@@ -3,7 +3,7 @@ from flask_httpauth import HTTPDigestAuth
 import requests
 from requests.auth import HTTPDigestAuth as httpDigest
 import time as t
-
+import math
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secretkey'
@@ -23,7 +23,7 @@ def get():
         r = requests.get(pong_endpoint, auth=httpDigest('vcu', 'rams') )
         end = t.perf_counter()
         return jsonify({
-                "total-time": end - start
+                "total-time": r.elapsed.total_seconds()
         })
 
 if __name__ == "__main__":
